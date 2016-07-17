@@ -11,12 +11,8 @@
 int main(int argc, char **argv)
 {
   /**
-   * The ros::init() function needs to see argc and argv so that it can perform
-   * any ROS arguments and name remapping that were provided at the command line.
-   * For programmatic remappings you can use a different version of init() which takes
-   * remappings directly, but for most command-line programs, passing argc and argv is
-   * the easiest way to do it.  The third argument to init() is the name of the node.
-   *
+   * The ros::init(): remapping that were provided at the command line.
+   * 
    * You must call one of the versions of ros::init() before using any other
    * part of the ROS system.
    */
@@ -65,7 +61,9 @@ int main(int argc, char **argv)
      */
     sensor_msgs::JointState joint_msg;
 
-    //compute next step
+    /**
+     * For testing purposes, create a waiste joint motion between 2 fixed ponts.
+     */
     if (turn_right == true && current_joint_state < 1)
     {
       current_joint_state += step;
@@ -83,7 +81,10 @@ int main(int argc, char **argv)
       }
     }
 
-
+    /**
+     * Update the joint state positions
+     */
+     
     //joint_msg.header = auto;
     joint_msg.name.push_back("waist_rotate");
     joint_msg.position.push_back(current_joint_state);
